@@ -1,12 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:toonflix/widgets/button.dart';
-import 'package:toonflix/widgets/card.dart';
+import 'package:toonflix/widgets/currency_card.dart';
 
 void main() {
   runApp(App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  int count = 69420;
+
+  void increaseCount() {
+    setState(() {
+      count += 10;
+    });
+  }
+
+  void decreaseCount() {
+    setState(() {
+      count -= 10;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -54,9 +73,9 @@ class App extends StatelessWidget {
                         fontSize: 24,
                       ),
                     ),
-                    const Text(
-                      "\$69420",
-                      style: TextStyle(
+                    Text(
+                      "\$$count",
+                      style: const TextStyle(
                         fontSize: 48,
                         fontWeight: FontWeight.w600,
                       ),
@@ -66,16 +85,18 @@ class App extends StatelessWidget {
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
+                      children: [
                         Button(
                           text: "Request",
                           textColor: Colors.white,
-                          backgroundColor: Color(0xFF1F2123),
+                          backgroundColor: const Color(0xFF1F2123),
+                          onClick: increaseCount,
                         ),
                         Button(
                           text: "Transfer",
                           textColor: Colors.black,
-                          backgroundColor: Color(0xFFF1B33B),
+                          backgroundColor: const Color(0xFFF1B33B),
+                          onClick: decreaseCount,
                         ),
                       ],
                     ),
@@ -143,7 +164,9 @@ class App extends StatelessWidget {
       theme: ThemeData(
         fontFamily: "Inter",
         textTheme: const TextTheme(
-          bodyText2: TextStyle(color: Colors.white),
+          bodyText2: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );
