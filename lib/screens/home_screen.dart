@@ -29,16 +29,7 @@ class HomeScreen extends StatelessWidget {
         future: webtoons,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Column(
-              children: [
-                const SizedBox(
-                  height: 32,
-                ),
-                Expanded(
-                  child: makeList(snapshot),
-                ),
-              ],
-            );
+            return makeList(snapshot);
           }
           return const Center(
             child: CircularProgressIndicator(
@@ -52,7 +43,10 @@ class HomeScreen extends StatelessWidget {
 
   ListView makeList(AsyncSnapshot<List<WebtoonModel>> snapshot) {
     return ListView.separated(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 32,
+        vertical: 48,
+      ),
       scrollDirection: Axis.horizontal,
       itemCount: snapshot.data!.length,
       itemBuilder: (context, index) {

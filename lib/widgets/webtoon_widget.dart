@@ -46,7 +46,7 @@ class Webtoon extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 16,
+            height: 24,
           ),
           Text(
             title,
